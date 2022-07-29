@@ -1,18 +1,27 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Target : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    // set variables
+    public float health = 50f;
+
+    // function for taking damage
+    public void TakeDamage(float amount)
     {
-        
+        // reduce health by amount
+        // amount = damage from gun
+        health -= amount;
+
+        if (health <= 0f)
+        {
+            Die();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    // death function
+    void Die()
     {
-        
+        // destroys the game object this script is attached to
+        Destroy(gameObject);
     }
 }
