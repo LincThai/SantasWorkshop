@@ -1,33 +1,67 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class Gun : MonoBehaviour
 {
     // Set variables
     
-    [Header("Numeric Values")]
+    [Header("Stat Values")]
     // Set damage Variable
     public float damage = 10f;
-    // set gun range
+    // Set gun range
     public float range = 100f;
-    // set rate of fire
+    // Set rate of fire
     public float fireRate = 15f;
-    // set impact force
+    // Set impact force
     public float impactForce = 30f;
 
+    [Header("Ammunition Values")]
+    // Set Max Ammo
+    public int maxAmmo = 10;
+    // Set Current Ammo
+    private int currentAmmo;
+    // Set Reload Time
+    public float reloadTime = 1f;
+    // Set Reload bool
+    private bool isReloading = false;
+
+    
     [Header("Refecences")]
-    // reference to camera
+    // Reference to camera
     public Camera fpsCam;
-    // reference to particle system
+    // Reference to particle system
     public ParticleSystem muzzleFlash;
-    // reference to impact effect game object/particle system
+    // Reference to impact effect game object/particle system
     public GameObject impactEffect;
 
-    // private float for the next time to fire
+    // Private float for the next time to fire
     private float nextTimeToFire = 0f;
+
+    void Start()
+    {
+        // set currentAmmo to maxAmmo
+        currentAmmo = maxAmmo;
+    }
 
     // Update is called once per frame
     void Update()
     {
+        //
+        if (isReloading)
+        {
+            // sends back to the start
+            return;
+        }
+
+        // check if ammo is less than 0
+        if (currentAmmo <= 0)
+        {
+            // starts thew reload function
+            StartCoroutine(Reload());
+            // sends back to the start
+            return;
+        }
+
        // checks if the fire button is pressed and
        // that the current time is greater than the nextTimeToFire variable
        if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
@@ -40,11 +74,28 @@ public class Gun : MonoBehaviour
         }
     }
 
+    // function to reload the gun
+    IEnumerator Reload()
+    {
+        isReloading = true;
+
+        Debug.Log("Reloading...");
+
+        yield return new WaitForSeconds(reloadTime);
+
+        currentAmmo = maxAmmo;
+
+        isReloading = false;
+    }
+
     // function to shoot from the gun
     void Shoot()
     {
         // play muzzle flash
         muzzleFlash.Play();
+
+        // reduce ammo
+        currentAmmo--;
         
         // variable that will be assigned the gameObject that is hit
         RaycastHit hit;
