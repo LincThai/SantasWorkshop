@@ -545,6 +545,10 @@ PrefabInstance:
       propertyPath: fpsCam
       value: 
       objectReference: {fileID: 1991214645}
+    - target: {fileID: 6148502324167131597, guid: 381ea9ca3d2684241810f345007471ea, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 2060764874}
     - target: {fileID: 7564507306648888607, guid: 381ea9ca3d2684241810f345007471ea, type: 3}
       propertyPath: m_Name
       value: Gun (2)
@@ -610,6 +614,10 @@ PrefabInstance:
       propertyPath: fpsCam
       value: 
       objectReference: {fileID: 1991214645}
+    - target: {fileID: 6148502324167131597, guid: 381ea9ca3d2684241810f345007471ea, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 2060764874}
     - target: {fileID: 7564507306648888607, guid: 381ea9ca3d2684241810f345007471ea, type: 3}
       propertyPath: m_Name
       value: Gun (1)
@@ -866,6 +874,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 856692865374560583, guid: 6174111e539029f41b9bfc2d68da0e8f, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 2060764874}
     - target: {fileID: 2556803836551810249, guid: 6174111e539029f41b9bfc2d68da0e8f, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
@@ -876,7 +888,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2556803836551810249, guid: 6174111e539029f41b9bfc2d68da0e8f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5789941759989942842, guid: 6174111e539029f41b9bfc2d68da0e8f, type: 3}
       propertyPath: m_LocalScale.x

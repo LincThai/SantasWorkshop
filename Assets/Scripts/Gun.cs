@@ -37,10 +37,20 @@ public class Gun : MonoBehaviour
     // Private float for the next time to fire
     private float nextTimeToFire = 0f;
 
+    // reference to animator
+    public Animator animator;
+
     void Start()
     {
         // set currentAmmo to maxAmmo
         currentAmmo = maxAmmo;
+    }
+
+    void OnEnable()
+    {
+        // resets both bools when the gameobjects is enabled
+        isReloading = false;
+        animator.SetBool("Reloading", false);
     }
 
     // Update is called once per frame
@@ -77,14 +87,20 @@ public class Gun : MonoBehaviour
     // function to reload the gun
     IEnumerator Reload()
     {
+        // set is reloading to false
         isReloading = true;
-
         Debug.Log("Reloading...");
-
-        yield return new WaitForSeconds(reloadTime);
-
+        // set reloading bool in animator to true
+        animator.SetBool("Reloading", true);
+        // make you wait for reloadTime - .25 seconds
+        yield return new WaitForSeconds(reloadTime - .25f);
+        // set reloading bool in animator to false
+        animator.SetBool("Reloading", false);
+        // wait .25 seconds for Animation to be complete
+        yield return new WaitForSeconds(.25f);
+        // reload
         currentAmmo = maxAmmo;
-
+        // set is reloading to false
         isReloading = false;
     }
 
